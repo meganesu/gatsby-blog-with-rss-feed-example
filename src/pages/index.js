@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 const IndexPage = ({ data }) => {
   return (
@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => {
     >
       <title>My Personal Blog</title>
       <h1 style={{ color: "rebeccapurple" }}>
-        Welcome to my blog!
+        My Blog Posts
       </h1>
       <ul
         style={{
@@ -22,15 +22,20 @@ const IndexPage = ({ data }) => {
         }}
       >
         {
-          data.allMarkdownRemark.nodes.map(node => (
-            <li style={{ listStyle: "none" }}>
-              <h2>
-                {node.frontmatter.title}
-              </h2>
-              <div
-                dangerouslySetInnerHTML={{ __html: node.html }}
-                style={{ lineHeight: "1.5rem" }}
-              />
+          data.allMarkdownRemark.nodes.map(post => (
+            <li
+              style={{
+                listStyle: "none",
+              }}
+            >
+              <Link
+                to={post.postPath}
+                style={{ color: "black" }}
+              >
+                <h2>
+                  {post.frontmatter.title}
+                </h2>
+              </Link>
             </li>
           ))
         }
@@ -41,12 +46,13 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {
       nodes {
         frontmatter {
           title
         }
         html
+        postPath: gatsbyPath(filePath: "/{MarkdownRemark.frontmatter__title}")
       }
     }
   }
