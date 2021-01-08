@@ -27,24 +27,18 @@ const codeStyles = {
 // markup
 const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
+    <main style={{
+      fontFamily: "Helvetica, sans-serif",
+      margin: "auto",
+      maxWidth: "550px",
+      padding: "1rem 2rem",
+    }}>
       <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry{" "}
-        <span role="img" aria-label="Pensive emoji">
-          😔
-        </span>{" "}
-        we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
+      <h1>Page not found</h1>
+      <p>
+        Sorry, we couldn’t find what you were looking for.
+      </p>
+      <p>
         <Link to="/">Go home</Link>.
       </p>
     </main>
