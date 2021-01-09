@@ -29,7 +29,7 @@ const IndexPage = ({ data }) => {
               }}
             >
               <Link
-                to={post.postPath}
+                to={post.slug}
                 style={{ color: "black" }}
               >
                 <h2>
@@ -52,7 +52,7 @@ export const query = graphql`
           title
         }
         html
-        postPath: gatsbyPath(filePath: "/{MarkdownRemark.frontmatter__title}")
+        slug: gatsbyPath(filePath: "/{MarkdownRemark.frontmatter__title}")
       }
     }
   }
