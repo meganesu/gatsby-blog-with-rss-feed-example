@@ -1,6 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: "my-personal-blog",
+    siteUrl: "https://my-personal-blog.com",
+    description:
+      "An example Gatsby blog with an automatically generated RSS feed.",
   },
   plugins: [
     "gatsby-transformer-remark",
